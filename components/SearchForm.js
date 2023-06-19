@@ -11,6 +11,7 @@ export default function SearchForm({darkMode}) {
     const [filters, setFilters] = useState({ source: [], difficulty: [] });
     const [searched, setSearched] = useState(false);
     const [problemInfo, setProblemInfo] = useState({});
+    const [loading, setLoading] = useState(false);
 
     useEffect(() => {
         handleFilterChange(filters);
@@ -36,8 +37,9 @@ export default function SearchForm({darkMode}) {
             if (filters.difficulty && filters.difficulty.length > 0) {
                 urlForProblemsSearch += `&difficulty=${filters.difficulty.join(',')}`;
             }
-    
+            setLoading(true);
             const problemsData = await axios.get(urlForProblemsSearch);
+            setLoading(false);
             console.log("Problems data in Search Form:", problemsData);
             setProblems(problemsData.data.problems);
             const problemInfoData = await axios.get(urlForProblemInfo);
@@ -46,6 +48,7 @@ export default function SearchForm({darkMode}) {
             setSearched(true);
 
         } catch (error) {
+            setLoading(false);
             console.error('Error:', error);
         }
     };       
@@ -54,32 +57,38 @@ export default function SearchForm({darkMode}) {
         setFilters(newFilters);
     };
     
-    return (
-            <>
-                <form onSubmit={handleSubmit} className={`w-full ${darkMode ? 'dark' : ''}`}>
-                    <div className="relative w-full sm:w-7/12 m-auto">
-                        <input
-                            type="text"
-                            className={`h-12 rounded-full w-full py-2 px-4 leading-tight focus:outline-none pl-10 shadow-lg ${darkMode ? 'text-white bg-gray-800 focus:bg-gray-700 focus:border-blue-500' : 'text-gray-900 bg-white focus:bg-white focus:border-blue-500'}`}
-                            placeholder="Search for problems..."
-                            value={searchTerm}
-                            onChange={(e) => setSearchTerm(e.target.value)}
-                        />
-                        <div className="absolute left-3 top-1/2 transform -translate-y-1/2">
-                            <Icon icon={mdiMagnify} className={darkMode ? 'text-white' : 'text-gray-500'} />
-                        </div>
+    return ( 
+        <div> 
+        {loading ? 
+        <div className="w-16 h-16 border-t-4 border-b-4 border-blue-500 rounded-full animate-spin" /> : 
+        
+            (<><form onSubmit={handleSubmit} className={`w-full ${darkMode ? 'dark' : ''}`}>
+                <div className="relative w-full md:w-1/2 sm:w-1/2 m-auto">
+                    <input
+                        type="text"
+                        className={`h-12 rounded-full w-full py-2 px-4 leading-tight focus:outline-none pl-10 shadow-lg ${darkMode ? 'text-white bg-gray-800 focus:bg-gray-700 focus:border-blue-500' : 'text-gray-900 bg-white focus:bg-white focus:border-blue-500'}`}
+                        placeholder="Search for problems..."
+                        value={searchTerm}
+                        onChange={(e) => setSearchTerm(e.target.value)}
+                    />
+                    <div className="absolute left-3 top-1/2 transform -translate-y-1/2">
+                        <Icon icon={mdiMagnify} className={darkMode ? 'text-white' : 'text-gray-500'} />
                     </div>
-                    <button
-                        type="submit"
-                        className={`mt-8 font-bold py-2 px-4 rounded m-auto block ${darkMode ? 'bg-gray-700 hover:bg-gray-600 text-white' : 'bg-blue-500 hover:bg-blue-700 text-white'}`}
-                    >
-                        Search
-                    </button>
-                </form>
-                <div className="flex flex-col items-center pt-8">
-                <InformationBox problems={problems} problemInfo={problemInfo} darkMode={darkMode} searched={searched} />
-                <Results searchTerm={searchTerm} problems={problems} darkMode={darkMode} onFilterChange={handleFilterChange} filters={filters} />
                 </div>
+                <button
+                    type="submit"
+                    className={`mt-8 font-bold py-2 px-4 rounded m-auto block ${darkMode ? 'bg-gray-700 hover:bg-gray-600 text-white' : 'bg-blue-500 hover:bg-blue-700 text-white'}`}
+                >
+                    Search
+                </button>
+            </form>
+            <div className="flex flex-col items-center pt-8">
+            <InformationBox problems={problems} problemInfo={problemInfo} darkMode={darkMode} searched={searched} />
+            <Results searchTerm={searchTerm} problems={problems} darkMode={darkMode} onFilterChange={handleFilterChange} filters={filters} />
+            </div>
             </>
-    )
+            )}
+            
+        </div>
+)
 }

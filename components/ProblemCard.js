@@ -29,7 +29,7 @@ export default function ProblemCard({ problem, darkMode }) {
     const capitalizedTags = problem.tags.map(tag => capitalizeFirstLetter(tag));
 
     return (
-        <div className={`shadow-md rounded-md p-5 mb-5 overflow-x-hidden overflow-y-auto ${darkMode ? 'bg-gray-800 text-white' : 'bg-white text-black'}`}>
+        <div className={`shadow-md rounded-md p-5 mb-1 overflow-x-hidden overflow-y-auto ${darkMode ? 'bg-gray-800 text-white' : 'bg-white text-black'}`}>
             <h2 className="text-xl font-bold mb-2">{problem.name}</h2>
             <p className="mb-4 text-sm">{problemStatement}</p>
             <p><strong>Difficulty Level:</strong> {difficultyLevel || 'Not provided'}</p>

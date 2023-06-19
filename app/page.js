@@ -30,7 +30,7 @@ export default function Home() {
       <button onClick={toggleDarkMode} className='absolute mt-12 ml-12 text-3xl sm:text-2xl'>
         {darkMode ? <FaSun /> : <FaMoon />}
       </button>
-      <main className="flex flex-col items-center p-24">
+      <main className="flex flex-col items-center p-12 sm:p-24 md:18">
         <h1 className="text-4xl sm:text-6xl font-bold text-center mb-8">
           <span className={`${!darkMode ? 'text-green-600': 'text-green-900'}`}>Quest</span><span className={`${!darkMode ? 'text-blue-500': 'text-blue-900'}`}>Coder</span>
         </h1>
