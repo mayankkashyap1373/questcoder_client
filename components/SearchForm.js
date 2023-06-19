@@ -26,8 +26,8 @@ export default function SearchForm({darkMode}) {
     const onSearch = async (searchTerm, filters) => {
         console.log("Search term in Search Form:", searchTerm);
         try {
-            let urlForProblemsSearch = `http://server.quest-coder.com/api/v1/problems/?searchTerm=${encodeURIComponent(searchTerm)}`;
-            let urlForProblemInfo = `http://server.quest-coder.com/api/v1/problems/search-term-info/?searchTerm=${encodeURIComponent(searchTerm)}`;
+            let urlForProblemsSearch = `https://server.quest-coder.com/api/v1/problems/?searchTerm=${encodeURIComponent(searchTerm)}`;
+            let urlForProblemInfo = `https://server.quest-coder.com/api/v1/problems/search-term-info/?searchTerm=${encodeURIComponent(searchTerm)}`;
     
             // Append filters to the URL
             if (filters.source && filters.source.length > 0) {
