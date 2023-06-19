@@ -59,11 +59,11 @@ export default function SearchForm({darkMode}) {
         {loading ? 
         <div className=" h-16 border-t-4 border-b-4 border-blue-500 rounded-full animate-spin" /> : 
         
-            (<><form onSubmit={handleSubmit} className={`w-full ${darkMode ? 'dark' : ''}`}>
-                <div className="relative w-full md:w-1/2 sm:w-1/2 m-auto">
+            (<><form onSubmit={handleSubmit} className={`${darkMode ? 'dark' : ''}`}>
+                <div className="relative m-auto">
                     <input
                         type="text"
-                        className={`h-12 rounded-full w-full py-2 px-4 leading-tight focus:outline-none pl-10 shadow-lg ${darkMode ? 'text-white bg-gray-800 focus:bg-gray-700 focus:border-blue-500' : 'text-gray-900 bg-white focus:bg-white focus:border-blue-500'}`}
+                        className={`h-12 rounded-full py-2 px-4 leading-tight focus:outline-none pl-10 shadow-lg ${darkMode ? 'text-white bg-gray-800 focus:bg-gray-700 focus:border-blue-500' : 'text-gray-900 bg-white focus:bg-white focus:border-blue-500'}`}
                         placeholder="Search for problems..."
                         value={searchTerm}
                         onChange={(e) => setSearchTerm(e.target.value)}
