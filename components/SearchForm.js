@@ -57,7 +57,7 @@ export default function SearchForm({darkMode}) {
     return (
             <>
                 <form onSubmit={handleSubmit} className={`w-full ${darkMode ? 'dark' : ''}`}>
-                    <div className="relative w-3/4 sm:w-1/2 md:w-5/12 m-auto">
+                    <div className="relative w-full sm:w-7/12 m-auto">
                         <input
                             type="text"
                             className={`h-12 rounded-full w-full py-2 px-4 leading-tight focus:outline-none pl-10 shadow-lg ${darkMode ? 'text-white bg-gray-800 focus:bg-gray-700 focus:border-blue-500' : 'text-gray-900 bg-white focus:bg-white focus:border-blue-500'}`}
@@ -76,7 +76,7 @@ export default function SearchForm({darkMode}) {
                         Search
                     </button>
                 </form>
-                <div className="flex flex-col items-center p-8">
+                <div className="flex flex-col items-center pt-8">
                 <InformationBox problems={problems} problemInfo={problemInfo} darkMode={darkMode} searched={searched} />
                 <Results searchTerm={searchTerm} problems={problems} darkMode={darkMode} onFilterChange={handleFilterChange} filters={filters} />
                 </div>
