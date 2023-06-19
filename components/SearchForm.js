@@ -25,7 +25,6 @@ export default function SearchForm({darkMode}) {
     };
     
     const onSearch = async (searchTerm, filters) => {
-        console.log("Search term in Search Form:", searchTerm);
         try {
             let urlForProblemsSearch = `https://server.quest-coder.com/api/v1/problems/?searchTerm=${encodeURIComponent(searchTerm)}`;
             let urlForProblemInfo = `https://server.quest-coder.com/api/v1/problems/search-term-info/?searchTerm=${encodeURIComponent(searchTerm)}`;
@@ -40,10 +39,8 @@ export default function SearchForm({darkMode}) {
             setLoading(true);
             const problemsData = await axios.get(urlForProblemsSearch);
             setLoading(false);
-            console.log("Problems data in Search Form:", problemsData);
             setProblems(problemsData.data.problems);
             const problemInfoData = await axios.get(urlForProblemInfo);
-            console.log("Problems data in Search Form:", problemInfoData);
             setProblemInfo(problemInfoData.data.problemInfo);
             setSearched(true);
 
@@ -60,7 +57,7 @@ export default function SearchForm({darkMode}) {
     return ( 
         <div> 
         {loading ? 
-        <div className="w-16 h-16 border-t-4 border-b-4 border-blue-500 rounded-full animate-spin" /> : 
+        <div className=" h-16 border-t-4 border-b-4 border-blue-500 rounded-full animate-spin" /> : 
         
             (<><form onSubmit={handleSubmit} className={`w-full ${darkMode ? 'dark' : ''}`}>
                 <div className="relative w-full md:w-1/2 sm:w-1/2 m-auto">

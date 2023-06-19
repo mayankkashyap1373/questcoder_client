@@ -3,7 +3,6 @@ const sources = ['LeetCode', 'Codeforces', 'CodeChef'];
 const difficulties = ['Easy', 'Medium', 'Hard'];
 
 export default function Sidebar({ onFilterChange, filters, darkMode, problems }) {
-    console.log("Problems: ", problems);
     const { source, difficulty } = filters;
   
     const handleFilterChange = (event) => {
@@ -14,7 +13,6 @@ export default function Sidebar({ onFilterChange, filters, darkMode, problems })
     };      
 
     useEffect(() => {
-        console.log("Filters in Sidebar: ", filters);
     }, [filters]);
 
     const handleSliderChange = (event, newValue) => {

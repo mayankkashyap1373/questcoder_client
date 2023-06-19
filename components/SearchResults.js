@@ -13,11 +13,9 @@ export default function Results({ problems, darkMode, source, difficulty, onFilt
 
       useEffect(() => {
         onFilterChange({ source, difficulty });
-        console.log("Filters in results:", filters);
       }, [source, difficulty]);
 
       useEffect(() => {
-        console.log("Filters in results:", filters);
         onFilterChange(filters);
     }, [filters]);
     
